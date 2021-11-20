@@ -28,6 +28,7 @@ namespace RBX_Alt_Manager
         public string Username;
         private string _Alias = "";
         private string _Description = "";
+        private string _Status = "";
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)] public string Group { get; set; } = "Default";
         public long UserID;
         public Dictionary<string, string> Fields = new Dictionary<string, string>();
@@ -69,6 +70,17 @@ namespace RBX_Alt_Manager
 
                 _Description = value;
                 AccountManager.DelayedSaveAccounts();
+            }
+        }
+        public string Status
+        {
+            get => _Status;
+            set
+            {
+                if (value == null)
+                    return;
+
+                _Status = value;
             }
         }
 

@@ -71,6 +71,7 @@
             this.AccountAlias = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.Description = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.Group = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.Status = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.EditTheme = new System.Windows.Forms.Button();
             this.UserID = new RBX_Alt_Manager.Classes.BorderedTextBox();
             this.Alias = new RBX_Alt_Manager.Classes.BorderedTextBox();
@@ -421,6 +422,7 @@
             this.AccountsView.AllColumns.Add(this.AccountAlias);
             this.AccountsView.AllColumns.Add(this.Description);
             this.AccountsView.AllColumns.Add(this.Group);
+            this.AccountsView.AllColumns.Add(this.Status);
             this.AccountsView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -429,7 +431,8 @@
             this.Username,
             this.AccountAlias,
             this.Description,
-            this.Group});
+            this.Group,
+            this.Status});
             this.AccountsView.ContextMenuStrip = this.AccountsStrip;
             this.AccountsView.Cursor = System.Windows.Forms.Cursors.Default;
             this.AccountsView.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F);
@@ -467,7 +470,7 @@
             // 
             this.Description.AspectName = "Description";
             this.Description.Text = "Description";
-            this.Description.Width = 200;
+            this.Description.Width = 160;
             // 
             // Group
             // 
@@ -476,6 +479,12 @@
             this.Group.MinimumWidth = 0;
             this.Group.Text = "";
             this.Group.Width = 0;
+            // 
+            // Status
+            // 
+            this.Status.AspectName = "Status";
+            this.Status.Text = "Status";
+            this.Status.Width = 51;
             // 
             // EditTheme
             // 
@@ -633,5 +642,6 @@
         private System.Windows.Forms.ToolStripMenuItem sortAlphabeticallyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toggleToolStripMenuItem;
         private System.Windows.Forms.Button EditTheme;
+        private BrightIdeasSoftware.OLVColumn Status;
     }
 }

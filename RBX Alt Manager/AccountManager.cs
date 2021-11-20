@@ -34,6 +34,7 @@ namespace RBX_Alt_Manager
         public static RestClient APIClient;
         public static RestClient AuthClient;
         public static RestClient EconClient;
+        public static RestClient PresenceClient;
         public static RestClient AccountClient;
         public static RestClient Web13Client;
         public static string CurrentPlaceId;
@@ -128,6 +129,61 @@ namespace RBX_Alt_Manager
             {
                 AccountsView.BuildList(true);
                 AccountsView.BuildGroups();
+            }
+        }
+
+        private void RefreshPresence()
+        {
+            List<long> reqIds = new List<long>();
+            Dictionary<long, int> responseIndexList = new Dictionary<long, int>();
+            
+            for (int i = 0; i < AccountsList.Count; i++)
+            {
+                Account account = AccountsList[i];
+                reqIds.Add(account.UserID);
+                responseIndexList.Add(account.UserID, i);
+            }
+            
+            RestRequest request = new RestRequest("/v1/presence/users");
+            request.AddHeader("content-type", "application/json");
+            request.AddJsonBody(new { userIds = reqIds });
+            IRestResponse response = PresenceClient.Execute(request, Method.POST);
+            
+            if (response.IsSuccessful && response.StatusCode == HttpStatusCode.OK)
+            {
+                JToken token = JToken.Parse(response.Content);
+            
+                foreach (Account account in AccountsList)
+                {
+                    int idx = responseIndexList[account.UserID];
+                    JToken info = token.SelectToken("userPresences[" + idx.ToString() + "]");
+                    int mode = (int)info["userPresenceType"];
+                    switch (mode)
+                    {
+                        case 0:
+                            account.Status = "OFF";
+                            break;
+                        case 1:
+                            account.Status = "WEB";
+                            break;
+                        case 2:
+                            account.Status = "GAME";
+                            break;
+                        default:
+                            account.Status = "🔴";
+                            break;
+                    }
+                }
+            
+                RefreshView();
+            
+            } else
+            {
+                foreach (Account account in AccountsList)
+                {
+                    account.Status = "???";
+                }
+                RefreshView();
             }
         }
 
@@ -340,7 +396,7 @@ namespace RBX_Alt_Manager
             if (!IniSettings.KeyExists("Password", "WebServer")) IniSettings.Write("Password", "", "WebServer"); else WSPassword = IniSettings.Read("Password", "WebServer");
             if (!IniSettings.KeyExists("EveryRequestRequiresPassword", "WebServer")) IniSettings.Write("EveryRequestRequiresPassword", "false", "WebServer");
 
-            PlaceID.Text = IniSettings.KeyExists("SavedPlaceId", "General") ? IniSettings.Read("SavedPlaceId", "General") : "2788229376";
+            PlaceID.Text = IniSettings.KeyExists("SavedPlaceId", "General") ? IniSettings.Read("SavedPlaceId", "General") : "4483381587";
 
             if (IniSettings.Read("DevMode", "Developer") != "true" && !File.Exists("dev.mode"))
             {
@@ -400,10 +456,13 @@ namespace RBX_Alt_Manager
             AccountClient.CachePolicy = new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.BypassCache);
 
             Web13Client = new RestClient("https://web.roblox.com/");
-            Web13Client.CachePolicy = new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.BypassCache);
+            Web13Client.CachePolicy = Web13Client.CachePolicy = new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.BypassCache);
 
             FriendsClient = new RestClient("https://friends.roblox.com");
             FriendsClient.CachePolicy = new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.BypassCache);
+
+            PresenceClient = new RestClient("https://presence.roblox.com/");
+            PresenceClient.CachePolicy = Web13Client.CachePolicy = new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.BypassCache);
 
             PlaceID_TextChanged(PlaceID, new EventArgs());
 
@@ -657,7 +716,20 @@ namespace RBX_Alt_Manager
                             IniSettings.Write("HideRbxAlert", "true", "General");
                     }
                 }
-                finally { }
+                finally {
+                    Task.Run(async () =>
+                    {
+                        while (true)
+                        {
+                            if (Form.ActiveForm == Program.MainForm)
+                            {
+                                RefreshPresence();
+                                await Task.Delay(10 * 1000);
+                            } else
+                                await Task.Delay(2 * 1000);
+                        }
+                    });
+                }
             }
         }
 
@@ -774,13 +846,11 @@ namespace RBX_Alt_Manager
 
         private void Follow_Click(object sender, EventArgs e)
         {
-            if (SelectedAccount == null) return;
 
             long UserId = GetUserID(UserID.Text);
 
             if (UserId < 0)
             {
-                MessageBox.Show("Failed to get UserId");
                 return;
             }
 
