@@ -141,5 +141,11 @@ namespace RBX_Alt_Manager
 
             AccountManager.SelectedAccount.SendFriendRequest(Username.Text);
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Unblocking all");
+            MessageBox.Show("Output: " + AccountManager.SelectedAccount.UnblockEveryone());
+        }
     }
 }

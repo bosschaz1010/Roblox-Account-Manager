@@ -719,13 +719,15 @@ namespace RBX_Alt_Manager
                 finally {
                     Task.Run(async () =>
                     {
+                        RefreshPresence();
                         while (true)
                         {
                             if (Form.ActiveForm == Program.MainForm)
                             {
+                                await Task.Delay(15 * 1000);
                                 RefreshPresence();
-                                await Task.Delay(10 * 1000);
-                            } else
+                            }
+                            else
                                 await Task.Delay(2 * 1000);
                         }
                     });

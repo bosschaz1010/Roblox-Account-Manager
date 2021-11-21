@@ -31,21 +31,21 @@
             this.components = new System.ComponentModel.Container();
             this.WhoFollow = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new Classes.BorderedTextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new Classes.BorderedTextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.textBox3 = new Classes.BorderedTextBox();
-            this.textBox5 = new Classes.BorderedTextBox();
             this.button7 = new System.Windows.Forms.Button();
             this.EmailTip = new System.Windows.Forms.ToolTip(this.components);
-            this.label3 = new System.Windows.Forms.Label();
-            this.Username = new Classes.BorderedTextBox();
+            this.textBox3 = new RBX_Alt_Manager.Classes.BorderedTextBox();
             this.Block = new System.Windows.Forms.Button();
             this.SetDisplayName = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.Username = new RBX_Alt_Manager.Classes.BorderedTextBox();
+            this.textBox5 = new RBX_Alt_Manager.Classes.BorderedTextBox();
+            this.textBox2 = new RBX_Alt_Manager.Classes.BorderedTextBox();
+            this.textBox1 = new RBX_Alt_Manager.Classes.BorderedTextBox();
             this.SuspendLayout();
             // 
             // WhoFollow
@@ -75,13 +75,6 @@
             this.label1.TabIndex = 1000;
             this.label1.Text = "Current Password";
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(12, 24);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(205, 20);
-            this.textBox1.TabIndex = 1;
-            // 
             // label2
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -92,15 +85,6 @@
             this.label2.Size = new System.Drawing.Size(78, 13);
             this.label2.TabIndex = 1000;
             this.label2.Text = "New Password";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox2.Location = new System.Drawing.Point(224, 24);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(167, 20);
-            this.textBox2.TabIndex = 2;
             // 
             // button1
             // 
@@ -134,29 +118,6 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // textBox3
-            // 
-            this.textBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox3.Location = new System.Drawing.Point(224, 53);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(167, 20);
-            this.textBox3.TabIndex = 5;
-            this.textBox3.Text = "Email";
-            this.EmailTip.SetToolTip(this.textBox3, "Email requires the \"Current Password\" to be filled in");
-            // 
-            // textBox5
-            // 
-            this.textBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox5.Location = new System.Drawing.Point(283, 109);
-            this.textBox5.MaxLength = 4;
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(52, 20);
-            this.textBox5.TabIndex = 11;
-            this.textBox5.Text = "Pin";
-            this.textBox5.Enter += new System.EventHandler(this.textBox5_Enter);
-            this.textBox5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox5_KeyPress);
-            // 
             // button7
             // 
             this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -178,22 +139,17 @@
             this.EmailTip.UseAnimation = false;
             this.EmailTip.UseFading = false;
             // 
-            // label3
+            // textBox3
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 109);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(193, 26);
-            this.label3.TabIndex = 1001;
-            this.label3.Text = "The account you have selected on the\r\nalt manager is the account being edited\r\n";
-            // 
-            // Username
-            // 
-            this.Username.Location = new System.Drawing.Point(12, 80);
-            this.Username.Name = "Username";
-            this.Username.Size = new System.Drawing.Size(72, 20);
-            this.Username.TabIndex = 7;
+            this.textBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(122)))), ((int)(((byte)(122)))));
+            this.textBox3.Location = new System.Drawing.Point(224, 53);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(167, 20);
+            this.textBox3.TabIndex = 5;
+            this.textBox3.Text = "Email";
+            this.EmailTip.SetToolTip(this.textBox3, "Email requires the \"Current Password\" to be filled in");
             // 
             // Block
             // 
@@ -226,16 +182,65 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(11, 106);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(206, 22);
+            this.button5.TabIndex = 1005;
+            this.button5.Text = "Unblock All";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // Username
+            // 
+            this.Username.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(122)))), ((int)(((byte)(122)))));
+            this.Username.Location = new System.Drawing.Point(12, 80);
+            this.Username.Name = "Username";
+            this.Username.Size = new System.Drawing.Size(72, 20);
+            this.Username.TabIndex = 7;
+            // 
+            // textBox5
+            // 
+            this.textBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox5.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(122)))), ((int)(((byte)(122)))));
+            this.textBox5.Location = new System.Drawing.Point(283, 109);
+            this.textBox5.MaxLength = 4;
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(52, 20);
+            this.textBox5.TabIndex = 11;
+            this.textBox5.Text = "Pin";
+            this.textBox5.Enter += new System.EventHandler(this.textBox5_Enter);
+            this.textBox5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox5_KeyPress);
+            // 
+            // textBox2
+            // 
+            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(122)))), ((int)(((byte)(122)))));
+            this.textBox2.Location = new System.Drawing.Point(224, 24);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(167, 20);
+            this.textBox2.TabIndex = 2;
+            // 
+            // textBox1
+            // 
+            this.textBox1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(122)))), ((int)(((byte)(122)))));
+            this.textBox1.Location = new System.Drawing.Point(12, 24);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(205, 20);
+            this.textBox1.TabIndex = 1;
+            // 
             // AccountUtils
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(518, 142);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.SetDisplayName);
             this.Controls.Add(this.Block);
             this.Controls.Add(this.Username);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.textBox3);
@@ -271,10 +276,10 @@
         private Classes.BorderedTextBox textBox5;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.ToolTip EmailTip;
-        private System.Windows.Forms.Label label3;
         private Classes.BorderedTextBox Username;
         private System.Windows.Forms.Button Block;
         private System.Windows.Forms.Button SetDisplayName;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
     }
 }
